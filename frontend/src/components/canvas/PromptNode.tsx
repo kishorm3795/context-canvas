@@ -47,3 +47,5 @@ export const PromptNode: React.FC<NodeProps> = ({ id, data, selected }) => {
     </div>
   );
 };
+
+// PromptNode instruction binding 1
