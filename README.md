@@ -81,3 +81,5 @@ Visit `http://localhost:5173` to explore the spatial prompt canvas.
 <!-- Milestone documentation appendix 2 -->
 
 <!-- Milestone documentation appendix 3 -->
+
+<!-- Milestone documentation appendix 4 -->
