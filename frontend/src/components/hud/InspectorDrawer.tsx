@@ -116,3 +116,5 @@ export const InspectorDrawer: React.FC = () => {
     </div>
   );
 };
+
+// InspectorDrawer collapsed and expanded styling 1
