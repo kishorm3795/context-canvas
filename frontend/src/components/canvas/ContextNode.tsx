@@ -134,3 +134,5 @@ export const ContextNode: React.FC<NodeProps> = ({ id, data, selected }) => {
 // ContextNode slider and mute logic 5
 
 // ContextNode slider and mute logic 6
+
+// ContextNode slider and mute logic 7
