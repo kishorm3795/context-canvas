@@ -60,3 +60,5 @@ export const SystemNode: React.FC<NodeProps> = ({ id, data, selected }) => {
 // SystemNode styling & accessibility check 3
 
 // SystemNode styling & accessibility check 4
+
+// SystemNode styling & accessibility check 5
