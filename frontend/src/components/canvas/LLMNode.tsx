@@ -127,3 +127,5 @@ export const LLMNode: React.FC<NodeProps> = ({ id, data, selected }) => {
 // LLMNode telemetry metrics display 5
 
 // LLMNode telemetry metrics display 6
+
+// LLMNode telemetry metrics display 7
