@@ -122,3 +122,5 @@ export const InspectorDrawer: React.FC = () => {
 // InspectorDrawer collapsed and expanded styling 2
 
 // InspectorDrawer collapsed and expanded styling 3
+
+// InspectorDrawer collapsed and expanded styling 4
