@@ -78,25 +78,3 @@ export interface CompileResult {
   }>;
   execution_target_id?: string;
 }
-
-// TypeScript contract refinement 1
-
-// TypeScript contract refinement 2
-
-// TypeScript contract refinement 3
-
-// TypeScript contract refinement 4
-
-// TypeScript contract refinement 5
-
-// TypeScript contract refinement 6
-
-// TypeScript contract refinement 7
-
-// TypeScript contract refinement 8
-
-// TypeScript contract refinement 9
-
-// TypeScript contract refinement 10
-
-// TypeScript contract refinement 11

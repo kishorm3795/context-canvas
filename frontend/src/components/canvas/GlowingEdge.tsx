@@ -94,25 +94,3 @@ export const GlowingEdge: React.FC<EdgeProps> = ({
     </>
   );
 };
-
-// Glowing edge SVG blur and color shift 1
-
-// Glowing edge SVG blur and color shift 2
-
-// Glowing edge SVG blur and color shift 3
-
-// Glowing edge SVG blur and color shift 4
-
-// Glowing edge SVG blur and color shift 5
-
-// Glowing edge SVG blur and color shift 6
-
-// Glowing edge SVG blur and color shift 7
-
-// Glowing edge SVG blur and color shift 8
-
-// Glowing edge SVG blur and color shift 9
-
-// Glowing edge SVG blur and color shift 10
-
-// Glowing edge SVG blur and color shift 11
