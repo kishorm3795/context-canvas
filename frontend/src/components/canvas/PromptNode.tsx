@@ -63,3 +63,5 @@ export const PromptNode: React.FC<NodeProps> = ({ id, data, selected }) => {
 // PromptNode instruction binding 7
 
 // PromptNode instruction binding 8
+
+// PromptNode instruction binding 9
