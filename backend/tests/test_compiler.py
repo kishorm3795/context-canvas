@@ -91,3 +91,5 @@ def test_dag_compiler_assembly_and_mute():
 # Verification assertion round 3
 
 # Verification assertion round 4
+
+# Verification assertion round 5
