@@ -115,3 +115,5 @@ export const LLMNode: React.FC<NodeProps> = ({ id, data, selected }) => {
     </div>
   );
 };
+
+// LLMNode telemetry metrics display 1
