@@ -122,3 +122,5 @@ export const ContextNode: React.FC<NodeProps> = ({ id, data, selected }) => {
     </div>
   );
 };
+
+// ContextNode slider and mute logic 1
