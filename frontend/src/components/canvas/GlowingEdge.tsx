@@ -104,3 +104,5 @@ export const GlowingEdge: React.FC<EdgeProps> = ({
 // Glowing edge SVG blur and color shift 4
 
 // Glowing edge SVG blur and color shift 5
+
+// Glowing edge SVG blur and color shift 6
