@@ -52,3 +52,5 @@ export const SystemNode: React.FC<NodeProps> = ({ id, data, selected }) => {
     </div>
   );
 };
+
+// SystemNode styling & accessibility check 1
