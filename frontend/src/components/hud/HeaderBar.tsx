@@ -95,3 +95,5 @@ export const HeaderBar: React.FC = () => {
     </header>
   );
 };
+
+// HeaderBar budget threshold calculations 1
