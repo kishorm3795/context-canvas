@@ -94,25 +94,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-
-// React Flow viewport registration 1
-
-// React Flow viewport registration 2
-
-// React Flow viewport registration 3
-
-// React Flow viewport registration 4
-
-// React Flow viewport registration 5
-
-// React Flow viewport registration 6
-
-// React Flow viewport registration 7
-
-// React Flow viewport registration 8
-
-// React Flow viewport registration 9
-
-// React Flow viewport registration 10
-
-// React Flow viewport registration 11
