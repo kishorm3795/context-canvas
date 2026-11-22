@@ -7,3 +7,8 @@
 ```
 [Spatial React Canvas] <---> [FastAPI DAG & Attribution Engine] <---> [Local Ollama]
 ```
+
+## Tech Stack
+- Frontend: React 19 + TypeScript + Vite + @xyflow/react + Tailwind CSS
+- State: Zustand
+- Backend: FastAPI + Pydantic v2 + aiosqlite
