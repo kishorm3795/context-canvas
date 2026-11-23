@@ -14,3 +14,8 @@
 ## 3. Spatial & Node Geometry
 - Node Width: 320px - 380px
 - Border Radius: 12px (rounded-xl)
+
+## 4. Glowing Edges & Attribution Tokens
+- Low (<0.3): Cyan/Teal
+- Medium (0.3-0.7): Amber
+- High (>0.7): Crimson
