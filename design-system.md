@@ -10,3 +10,7 @@
 ## 2. Typography Scale
 - Display: Inter (14px, 12px)
 - Monospace & Readouts: JetBrains Mono (11px, 10px)
+
+## 3. Spatial & Node Geometry
+- Node Width: 320px - 380px
+- Border Radius: 12px (rounded-xl)
