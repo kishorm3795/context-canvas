@@ -6,3 +6,7 @@
 - Canvas Void: #08090D
 - Panel Surface: rgba(13, 16, 23, 0.75)
 - Card Background: rgba(20, 24, 35, 0.85)
+
+## 2. Typography Scale
+- Display: Inter (14px, 12px)
+- Monospace & Readouts: JetBrains Mono (11px, 10px)
