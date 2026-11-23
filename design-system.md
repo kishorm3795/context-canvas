@@ -19,3 +19,6 @@
 - Low (<0.3): Cyan/Teal
 - Medium (0.3-0.7): Amber
 - High (>0.7): Crimson
+
+## 5. Iconography Standard
+- Lucide React SVG icons (Strict zero-emoji policy)
