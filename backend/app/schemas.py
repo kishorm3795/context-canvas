@@ -39,3 +39,8 @@ class MemoryStateData(BaseModel):
     content: str
     token_count: int = 0
     muted: bool = False
+
+class PromptQueryData(BaseModel):
+    title: str = 'User Instruction'
+    content: str
+    token_count: int = 0
