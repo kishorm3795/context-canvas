@@ -8,3 +8,5 @@ class NodeType(str, Enum):
     CONTEXT_CHUNK = 'context_chunk'
     PROMPT_QUERY = 'prompt_query'
     LLM_RUNNER = 'llm_runner'
+    MEMORY_STATE = 'memory_state'
+    DIFF_FORK = 'diff_fork'
