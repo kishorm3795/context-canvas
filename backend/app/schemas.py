@@ -58,3 +58,9 @@ class LLMRunnerData(BaseModel):
     max_context_limit: int = 8192
     output: Optional[str] = None
     metrics: LLMMetrics = Field(default_factory=LLMMetrics)
+
+class DiffForkData(BaseModel):
+    title: str = 'Branch Diff'
+    branch_a_output: str = ''
+    branch_b_output: str = ''
+    semantic_similarity: Optional[float] = None
