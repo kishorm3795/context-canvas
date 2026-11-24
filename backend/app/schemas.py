@@ -44,3 +44,8 @@ class PromptQueryData(BaseModel):
     title: str = 'User Instruction'
     content: str
     token_count: int = 0
+
+class LLMMetrics(BaseModel):
+    ttft_ms: Optional[float] = None
+    tokens_per_sec: Optional[float] = None
+    total_time_ms: Optional[float] = None
