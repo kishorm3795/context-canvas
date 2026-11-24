@@ -18,3 +18,9 @@ class Position(BaseModel):
 class TokenHighlight(BaseModel):
     token: str
     score: float = Field(ge=0.0, le=1.0)
+
+class SystemNodeData(BaseModel):
+    title: str = 'System Persona'
+    content: str
+    token_count: int = 0
+    pinned: bool = True
