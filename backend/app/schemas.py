@@ -49,3 +49,12 @@ class LLMMetrics(BaseModel):
     ttft_ms: Optional[float] = None
     tokens_per_sec: Optional[float] = None
     total_time_ms: Optional[float] = None
+
+class LLMRunnerData(BaseModel):
+    model: str = 'llama3.2:1b'
+    temperature: float = Field(default=0.2, ge=0.0, le=2.0)
+    top_p: float = Field(default=0.9, ge=0.0, le=1.0)
+    total_context_tokens: int = 0
+    max_context_limit: int = 8192
+    output: Optional[str] = None
+    metrics: LLMMetrics = Field(default_factory=LLMMetrics)
