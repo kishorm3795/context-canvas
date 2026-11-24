@@ -33,3 +33,9 @@ class ContextChunkData(BaseModel):
     weight: float = Field(default=1.0, ge=0.0, le=1.0)
     attribution_score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     token_highlights: List[TokenHighlight] = Field(default_factory=list)
+
+class MemoryStateData(BaseModel):
+    title: str = 'Memory Checkpoint'
+    content: str
+    token_count: int = 0
+    muted: bool = False
