@@ -14,3 +14,7 @@ class NodeType(str, Enum):
 class Position(BaseModel):
     x: float
     y: float
+
+class TokenHighlight(BaseModel):
+    token: str
+    score: float = Field(ge=0.0, le=1.0)
