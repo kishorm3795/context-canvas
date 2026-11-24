@@ -10,3 +10,7 @@ class NodeType(str, Enum):
     LLM_RUNNER = 'llm_runner'
     MEMORY_STATE = 'memory_state'
     DIFF_FORK = 'diff_fork'
+
+class Position(BaseModel):
+    x: float
+    y: float
