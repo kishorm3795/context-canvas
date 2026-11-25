@@ -64,3 +64,9 @@ class DiffForkData(BaseModel):
     branch_a_output: str = ''
     branch_b_output: str = ''
     semantic_similarity: Optional[float] = None
+
+class CanvasNode(BaseModel):
+    id: str
+    type: str
+    position: Position
+    data: Dict[str, Any]
