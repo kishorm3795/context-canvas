@@ -126,3 +126,5 @@ class CompileResponse(BaseModel):
     nodes_included: List[NodeCompilationDetail]
     nodes_muted: List[NodeCompilationDetail]
     execution_target_id: Optional[str] = None
+
+# Validation constraints verified for context chunk weights
