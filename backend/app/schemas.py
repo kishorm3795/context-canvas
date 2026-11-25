@@ -100,3 +100,12 @@ class NodeCompilationDetail(BaseModel):
     token_count: int
     muted: bool
     status: str
+
+class CompileResponse(BaseModel):
+    assembled_prompt: str
+    total_context_tokens: int
+    max_context_limit: int
+    budget_usage_percent: float
+    nodes_included: List[NodeCompilationDetail]
+    nodes_muted: List[NodeCompilationDetail]
+    execution_target_id: Optional[str] = None
