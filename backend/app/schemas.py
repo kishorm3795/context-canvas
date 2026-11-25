@@ -129,3 +129,4 @@ class CompileResponse(BaseModel):
 
 # Validation constraints verified for context chunk weights
 # Attribution score bounded between 0.0 and 1.0
+# Type hints strictly enforced via Pydantic v2
