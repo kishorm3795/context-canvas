@@ -92,3 +92,11 @@ class CompileRequest(BaseModel):
     nodes: List[CanvasNode]
     edges: List[CanvasEdge]
     max_context_limit: int = 8192
+
+class NodeCompilationDetail(BaseModel):
+    id: str
+    type: str
+    title: str
+    token_count: int
+    muted: bool
+    status: str
