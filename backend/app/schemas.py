@@ -128,3 +128,4 @@ class CompileResponse(BaseModel):
     execution_target_id: Optional[str] = None
 
 # Validation constraints verified for context chunk weights
+# Attribution score bounded between 0.0 and 1.0
