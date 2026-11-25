@@ -78,3 +78,11 @@ class CanvasEdge(BaseModel):
     weight: Optional[float] = Field(default=1.0, ge=0.0, le=1.0)
     attribution_score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
     animated: Optional[bool] = None
+
+class GraphSnapshot(BaseModel):
+    workspace_id: str
+    snapshot_id: str
+    timestamp: Optional[str] = None
+    parent_id: Optional[str] = None
+    nodes: List[CanvasNode]
+    edges: List[CanvasEdge]
