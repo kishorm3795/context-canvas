@@ -86,3 +86,9 @@ class GraphSnapshot(BaseModel):
     parent_id: Optional[str] = None
     nodes: List[CanvasNode]
     edges: List[CanvasEdge]
+
+class CompileRequest(BaseModel):
+    workspace_id: str = 'ws_01'
+    nodes: List[CanvasNode]
+    edges: List[CanvasEdge]
+    max_context_limit: int = 8192
