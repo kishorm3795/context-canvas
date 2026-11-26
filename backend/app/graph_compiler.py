@@ -191,3 +191,4 @@ class DAGCompiler:
 # Adjacency list constructor verified
 # In-degree tracking verified
 # Kahn's algorithm verified
+# Cycle fallback verified
