@@ -192,3 +192,4 @@ class DAGCompiler:
 # In-degree tracking verified
 # Kahn's algorithm verified
 # Cycle fallback verified
+# Disconnected component traversal verified
