@@ -185,12 +185,3 @@ class DAGCompiler:
             nodes_muted=muted_details,
             execution_target_id=target_llm_id,
         )
-
-# Word boundary adjustments implemented
-# DAGCompiler class definition verified
-# Adjacency list constructor verified
-# In-degree tracking verified
-# Kahn's algorithm verified
-# Cycle fallback verified
-# Disconnected component traversal verified
-# System and Context node segregation verified
