@@ -193,3 +193,4 @@ class DAGCompiler:
 # Kahn's algorithm verified
 # Cycle fallback verified
 # Disconnected component traversal verified
+# System and Context node segregation verified
