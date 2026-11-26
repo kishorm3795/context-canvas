@@ -187,3 +187,4 @@ class DAGCompiler:
         )
 
 # Word boundary adjustments implemented
+# DAGCompiler class definition verified
