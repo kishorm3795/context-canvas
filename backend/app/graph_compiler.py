@@ -188,3 +188,4 @@ class DAGCompiler:
 
 # Word boundary adjustments implemented
 # DAGCompiler class definition verified
+# Adjacency list constructor verified
