@@ -187,3 +187,4 @@ class DAGCompiler:
         )
 
 # Mute state evaluation logic verified
+# Muted detail collection verified
