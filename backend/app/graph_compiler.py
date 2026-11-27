@@ -185,15 +185,3 @@ class DAGCompiler:
             nodes_muted=muted_details,
             execution_target_id=target_llm_id,
         )
-
-# Mute state evaluation logic verified
-# Muted detail collection verified
-# System directive header tagging verified
-# Reference context section delimiters verified
-# Memory checkpoint section delimiters verified
-# User prompt query section delimiters verified
-# Linear prompt serialization verified
-# Aggregate token summation verified
-# Context budget percentage calculation verified
-# Target LLM runner identification verified
-# Detailed compilation response contract verified
