@@ -193,3 +193,4 @@ class DAGCompiler:
 # Memory checkpoint section delimiters verified
 # User prompt query section delimiters verified
 # Linear prompt serialization verified
+# Aggregate token summation verified
