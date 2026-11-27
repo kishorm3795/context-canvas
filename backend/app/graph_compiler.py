@@ -191,3 +191,4 @@ class DAGCompiler:
 # System directive header tagging verified
 # Reference context section delimiters verified
 # Memory checkpoint section delimiters verified
+# User prompt query section delimiters verified
