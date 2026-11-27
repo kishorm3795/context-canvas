@@ -192,3 +192,4 @@ class DAGCompiler:
 # Reference context section delimiters verified
 # Memory checkpoint section delimiters verified
 # User prompt query section delimiters verified
+# Linear prompt serialization verified
