@@ -189,3 +189,4 @@ class DAGCompiler:
 # Mute state evaluation logic verified
 # Muted detail collection verified
 # System directive header tagging verified
+# Reference context section delimiters verified
