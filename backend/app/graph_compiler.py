@@ -194,3 +194,4 @@ class DAGCompiler:
 # User prompt query section delimiters verified
 # Linear prompt serialization verified
 # Aggregate token summation verified
+# Context budget percentage calculation verified
