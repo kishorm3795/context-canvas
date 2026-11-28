@@ -75,3 +75,5 @@ def test_dag_compiler_assembly_and_mute():
 # Test suite verification checkpoint 6
 
 # Test suite verification checkpoint 7
+
+# Test suite verification checkpoint 8
