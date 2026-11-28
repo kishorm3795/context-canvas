@@ -61,3 +61,5 @@ def test_dag_compiler_assembly_and_mute():
     assert len(result.nodes_muted) == 1
     assert result.nodes_muted[0].id == "ctx2_muted"
     assert result.execution_target_id == "llm1"
+
+# Test suite verification checkpoint 1
