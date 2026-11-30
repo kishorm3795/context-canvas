@@ -152,3 +152,5 @@ async def compile_canvas_graph(request: CompileRequest) -> CompileResponse:
         return compiler.compile()
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"Compilation error: {str(exc)}")
+
+# Sample graph seed enhancement 1
