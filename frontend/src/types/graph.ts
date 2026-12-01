@@ -78,3 +78,5 @@ export interface CompileResult {
   }>;
   execution_target_id?: string;
 }
+
+// TypeScript contract refinement 1
