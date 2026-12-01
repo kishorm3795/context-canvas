@@ -92,3 +92,5 @@ export interface CompileResult {
 // TypeScript contract refinement 6
 
 // TypeScript contract refinement 7
+
+// TypeScript contract refinement 8
