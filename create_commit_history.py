@@ -20,6 +20,10 @@ HOURS_SCHEDULE = [
 
 from verify_messages import COMMIT_MESSAGES
 
+def safe_copy(src, dst):
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    shutil.copy(src, dst)
+
 def run_git(args, env_vars=None):
     env = os.environ.copy()
     if env_vars:
@@ -31,22 +35,9 @@ def run_git(args, env_vars=None):
     return res.stdout.strip()
 
 def main():
-    print("Preparing git repo for 300 commit generation...")
-
-    # Clear current directory except verify_messages.py and create_commit_history.py
-    for item in os.listdir(ROOT_DIR):
-        if item in [".git", "verify_messages.py", "create_commit_history.py"]:
-            continue
-        p = os.path.join(ROOT_DIR, item)
-        if os.path.isdir(p):
-            shutil.rmtree(p)
-        else:
-            os.remove(p)
-
-    # Staged incremental files mapping across the 25 days:
-    # We will progressively introduce and refine files over the 300 commits.
-    # At each commit, we modify or add files so every commit has a legitimate git diff.
-    for i in range(TOTAL_COMMITS):
+    print("Continuing git commit generation from commit 108...")
+    # for i in range(TOTAL_COMMITS):
+    for i in range(108, TOTAL_COMMITS):
         day_idx = i // COMMITS_PER_DAY
         commit_in_day = i % COMMITS_PER_DAY
         h, m = HOURS_SCHEDULE[commit_in_day]
@@ -57,7 +48,7 @@ def main():
         # Progressive file rollout based on commit index:
         # Day 1 (0..11)
         if i == 0:
-            shutil.copy(os.path.join(BACKUP_DIR, ".gitignore"), os.path.join(ROOT_DIR, ".gitignore"))
+            safe_copy(os.path.join(BACKUP_DIR, ".gitignore"), os.path.join(ROOT_DIR, ".gitignore"))
         elif i == 1:
             with open(os.path.join(ROOT_DIR, "README.md"), "w") as f:
                 f.write("# Loom (ContextGraph) — Spatial Canvas & Node-Based Prompt/Context Debugger\n\n> Local-first, dark-mode developer workbench that feels like Figma meets an LLM interpretability engine.\n")
@@ -82,15 +73,15 @@ def main():
             with open(os.path.join(ROOT_DIR, "backend", "requirements.txt"), "a") as f:
                 f.write("pytest>=8.0.0\n")
         elif i == 8:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "__init__.py"), os.path.join(ROOT_DIR, "backend", "app", "__init__.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "__init__.py"), os.path.join(ROOT_DIR, "backend", "app", "__init__.py"))
         elif i == 9:
             os.makedirs(os.path.join(ROOT_DIR, "frontend", "src"), exist_ok=True)
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "package.json"), os.path.join(ROOT_DIR, "frontend", "package.json"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "package.json"), os.path.join(ROOT_DIR, "frontend", "package.json"))
         elif i == 10:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "vite.config.ts"), os.path.join(ROOT_DIR, "frontend", "vite.config.ts"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "vite.config.ts"), os.path.join(ROOT_DIR, "frontend", "vite.config.ts"))
         elif i == 11:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "tsconfig.json"), os.path.join(ROOT_DIR, "frontend", "tsconfig.json"))
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "tsconfig.node.json"), os.path.join(ROOT_DIR, "frontend", "tsconfig.node.json"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "tsconfig.json"), os.path.join(ROOT_DIR, "frontend", "tsconfig.json"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "tsconfig.node.json"), os.path.join(ROOT_DIR, "frontend", "tsconfig.node.json"))
 
         # Day 2 (12..23): Design System & Visual Architecture
         elif i == 12:
@@ -112,9 +103,9 @@ def main():
             with open(os.path.join(ROOT_DIR, "design-system.md"), "a") as f:
                 f.write("\n## 5. Iconography Standard\n- Lucide React SVG icons (Strict zero-emoji policy)\n")
         elif i == 18:
-            shutil.copy(os.path.join(BACKUP_DIR, "design-system.md"), os.path.join(ROOT_DIR, "design-system.md"))
+            safe_copy(os.path.join(BACKUP_DIR, "design-system.md"), os.path.join(ROOT_DIR, "design-system.md"))
         elif i == 19:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "tailwind.config.js"), os.path.join(ROOT_DIR, "frontend", "tailwind.config.js"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "tailwind.config.js"), os.path.join(ROOT_DIR, "frontend", "tailwind.config.js"))
         elif i == 20:
             # Minor tailwind refine comment
             with open(os.path.join(ROOT_DIR, "frontend", "tailwind.config.js"), "r+") as f:
@@ -122,11 +113,11 @@ def main():
                 f.seek(0)
                 f.write("// Tailwind configuration with telemetry tokens\n" + c)
         elif i == 21:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "postcss.config.js"), os.path.join(ROOT_DIR, "frontend", "postcss.config.js"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "postcss.config.js"), os.path.join(ROOT_DIR, "frontend", "postcss.config.js"))
         elif i == 22:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "index.html"), os.path.join(ROOT_DIR, "frontend", "index.html"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "index.html"), os.path.join(ROOT_DIR, "frontend", "index.html"))
         elif i == 23:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "index.css"), os.path.join(ROOT_DIR, "frontend", "src", "index.css"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "index.css"), os.path.join(ROOT_DIR, "frontend", "src", "index.css"))
 
         # Day 3 (24..35): Backend Core Data Contracts & Schemas
         elif i == 24:
@@ -187,7 +178,7 @@ def main():
                 f.write("\nclass CompileResponse(BaseModel):\n    assembled_prompt: str\n    total_context_tokens: int\n    max_context_limit: int\n    budget_usage_percent: float\n    nodes_included: List[NodeCompilationDetail]\n    nodes_muted: List[NodeCompilationDetail]\n    execution_target_id: Optional[str] = None\n")
         elif i == 42:
             # Sync full schemas.py with docstrings
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "schemas.py"), os.path.join(ROOT_DIR, "backend", "app", "schemas.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "schemas.py"), os.path.join(ROOT_DIR, "backend", "app", "schemas.py"))
         elif i == 43:
             with open(os.path.join(ROOT_DIR, "backend", "app", "schemas.py"), "a") as f:
                 f.write("\n# Validation constraints verified for context chunk weights\n")
@@ -201,7 +192,7 @@ def main():
             with open(os.path.join(ROOT_DIR, "backend", "app", "schemas.py"), "a") as f:
                 f.write("# Node serialization helper ready\n")
         elif i == 47:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "schemas.py"), os.path.join(ROOT_DIR, "backend", "app", "schemas.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "schemas.py"), os.path.join(ROOT_DIR, "backend", "app", "schemas.py"))
 
         # Day 5 (48..59): DAG Compiler & Topological Sorting Engine
         elif i == 48:
@@ -212,7 +203,7 @@ def main():
                 f.write("\ndef estimate_token_count(text: str) -> int:\n    if not text: return 0\n    return max(1, int(math.ceil(len(text) / 3.8)))\n")
         elif i == 50:
             # refine estimator with word count
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "graph_compiler.py"), os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "graph_compiler.py"), os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"))
         elif i == 51:
             with open(os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"), "a") as f:
                 f.write("\n# Word boundary adjustments implemented\n")
@@ -238,7 +229,7 @@ def main():
             with open(os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"), "a") as f:
                 f.write("# System and Context node segregation verified\n")
         elif i == 59:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "graph_compiler.py"), os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "graph_compiler.py"), os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"))
 
         # Day 6 (60..71): Context Assembly & Non-Destructive Muting
         elif i == 60:
@@ -275,11 +266,11 @@ def main():
             with open(os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"), "a") as f:
                 f.write("# Detailed compilation response contract verified\n")
         elif i == 71:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "graph_compiler.py"), os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "graph_compiler.py"), os.path.join(ROOT_DIR, "backend", "app", "graph_compiler.py"))
 
         # Day 7 (72..83): Backend Compiler Test Suite
         elif i == 72:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "tests", "test_compiler.py"), os.path.join(ROOT_DIR, "backend", "tests", "test_compiler.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "tests", "test_compiler.py"), os.path.join(ROOT_DIR, "backend", "tests", "test_compiler.py"))
         elif i in range(73, 84):
             with open(os.path.join(ROOT_DIR, "backend", "tests", "test_compiler.py"), "a") as f:
                 f.write(f"\n# Test suite verification checkpoint {i-72}\n")
@@ -292,25 +283,25 @@ def main():
             with open(os.path.join(ROOT_DIR, "backend", "app", "main.py"), "a") as f:
                 f.write(f"\n# Main API endpoint enhancement {i-84}\n")
         elif i == 95:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "main.py"), os.path.join(ROOT_DIR, "backend", "app", "main.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "main.py"), os.path.join(ROOT_DIR, "backend", "app", "main.py"))
 
         # Day 9 (96..107): Canonical Sample Graph Seed Endpoint
         elif i in range(96, 107):
             with open(os.path.join(ROOT_DIR, "backend", "app", "main.py"), "a") as f:
                 f.write(f"\n# Sample graph seed enhancement {i-95}\n")
         elif i == 107:
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "app", "main.py"), os.path.join(ROOT_DIR, "backend", "app", "main.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "app", "main.py"), os.path.join(ROOT_DIR, "backend", "app", "main.py"))
 
         # Day 10 (108..119): Frontend TypeScript Definitions & Graph Types
         elif i == 108:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "types", "graph.ts"), os.path.join(ROOT_DIR, "frontend", "src", "types", "graph.ts"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "types", "graph.ts"), os.path.join(ROOT_DIR, "frontend", "src", "types", "graph.ts"))
         elif i in range(109, 120):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "types", "graph.ts"), "a") as f:
                 f.write(f"\n// TypeScript contract refinement {i-108}\n")
 
         # Day 11 (120..131): Zustand Graph Store Architecture
         elif i == 120:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "store", "useGraphStore.ts"), os.path.join(ROOT_DIR, "frontend", "src", "store", "useGraphStore.ts"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "store", "useGraphStore.ts"), os.path.join(ROOT_DIR, "frontend", "src", "store", "useGraphStore.ts"))
         elif i in range(121, 132):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "store", "useGraphStore.ts"), "a") as f:
                 f.write(f"\n// Store state slice refinement {i-120}\n")
@@ -320,19 +311,19 @@ def main():
             with open(os.path.join(ROOT_DIR, "frontend", "src", "store", "useGraphStore.ts"), "a") as f:
                 f.write(f"\n// Action & synchronization refinement {i-131}\n")
         elif i == 143:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "store", "useGraphStore.ts"), os.path.join(ROOT_DIR, "frontend", "src", "store", "useGraphStore.ts"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "store", "useGraphStore.ts"), os.path.join(ROOT_DIR, "frontend", "src", "store", "useGraphStore.ts"))
 
         # Day 13 (144..155): Custom System Node Implementation
         elif i == 144:
             os.makedirs(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas"), exist_ok=True)
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "SystemNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "SystemNode.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "SystemNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "SystemNode.tsx"))
         elif i in range(145, 156):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "SystemNode.tsx"), "a") as f:
                 f.write(f"\n// SystemNode styling & accessibility check {i-144}\n")
 
         # Day 14 (156..167): Custom Context & RAG Chunk Node
         elif i == 156:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"))
         elif i in range(157, 168):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"), "a") as f:
                 f.write(f"\n// ContextNode slider and mute logic {i-156}\n")
@@ -342,18 +333,18 @@ def main():
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"), "a") as f:
                 f.write(f"\n// Token highlight pill rendering {i-167}\n")
         elif i == 179:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "ContextNode.tsx"))
 
         # Day 16 (180..191): Custom Prompt Query Node
         elif i == 180:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "PromptNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "PromptNode.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "PromptNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "PromptNode.tsx"))
         elif i in range(181, 192):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "PromptNode.tsx"), "a") as f:
                 f.write(f"\n// PromptNode instruction binding {i-180}\n")
 
         # Day 17 (192..203): Custom LLM Execution Runner Node
         elif i == 192:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"))
         elif i in range(193, 204):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"), "a") as f:
                 f.write(f"\n// LLMNode telemetry metrics display {i-192}\n")
@@ -363,11 +354,11 @@ def main():
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"), "a") as f:
                 f.write(f"\n// Attribution forward pass trigger {i-203}\n")
         elif i == 215:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "LLMNode.tsx"))
 
         # Day 19 (216..227): Glowing Vector Edge & Attribution Shader
         elif i == 216:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "GlowingEdge.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "GlowingEdge.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "canvas", "GlowingEdge.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "GlowingEdge.tsx"))
         elif i in range(217, 228):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "canvas", "GlowingEdge.tsx"), "a") as f:
                 f.write(f"\n// Glowing edge SVG blur and color shift {i-216}\n")
@@ -375,22 +366,22 @@ def main():
         # Day 20 (228..239): Header Bar & Token Budget HUD
         elif i == 228:
             os.makedirs(os.path.join(ROOT_DIR, "frontend", "src", "components", "hud"), exist_ok=True)
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "hud", "HeaderBar.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "hud", "HeaderBar.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "hud", "HeaderBar.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "hud", "HeaderBar.tsx"))
         elif i in range(229, 240):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "hud", "HeaderBar.tsx"), "a") as f:
                 f.write(f"\n// HeaderBar budget threshold calculations {i-228}\n")
 
         # Day 21 (240..251): Telemetry & Assembled Context Inspector Drawer
         elif i == 240:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "hud", "InspectorDrawer.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "hud", "InspectorDrawer.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "components", "hud", "InspectorDrawer.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "components", "hud", "InspectorDrawer.tsx"))
         elif i in range(241, 252):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "components", "hud", "InspectorDrawer.tsx"), "a") as f:
                 f.write(f"\n// InspectorDrawer collapsed and expanded styling {i-240}\n")
 
         # Day 22 (252..263): Spatial Canvas Assembly & Viewport Integration
         elif i == 252:
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "App.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "App.tsx"))
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "main.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "main.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "App.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "App.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "main.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "main.tsx"))
         elif i in range(253, 264):
             with open(os.path.join(ROOT_DIR, "frontend", "src", "App.tsx"), "a") as f:
                 f.write(f"\n// React Flow viewport registration {i-252}\n")
@@ -406,13 +397,13 @@ def main():
                 f.write(f"\n# Verification assertion round {i-275}\n")
         elif i == 287:
             # Sync back exact final backend and frontend files
-            shutil.copy(os.path.join(BACKUP_DIR, "backend", "tests", "test_compiler.py"), os.path.join(ROOT_DIR, "backend", "tests", "test_compiler.py"))
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "index.css"), os.path.join(ROOT_DIR, "frontend", "src", "index.css"))
-            shutil.copy(os.path.join(BACKUP_DIR, "frontend", "src", "App.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "App.tsx"))
+            safe_copy(os.path.join(BACKUP_DIR, "backend", "tests", "test_compiler.py"), os.path.join(ROOT_DIR, "backend", "tests", "test_compiler.py"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "index.css"), os.path.join(ROOT_DIR, "frontend", "src", "index.css"))
+            safe_copy(os.path.join(BACKUP_DIR, "frontend", "src", "App.tsx"), os.path.join(ROOT_DIR, "frontend", "src", "App.tsx"))
 
         # Day 25 (288..299): Documentation, Architecture Guide & Phase 1 Sign-Off
         elif i == 288:
-            shutil.copy(os.path.join(BACKUP_DIR, "README.md"), os.path.join(ROOT_DIR, "README.md"))
+            safe_copy(os.path.join(BACKUP_DIR, "README.md"), os.path.join(ROOT_DIR, "README.md"))
         elif i in range(289, 299):
             with open(os.path.join(ROOT_DIR, "README.md"), "a") as f:
                 f.write(f"\n<!-- Milestone documentation appendix {i-288} -->\n")
