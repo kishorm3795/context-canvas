@@ -80,3 +80,5 @@ export interface CompileResult {
 }
 
 // TypeScript contract refinement 1
+
+// TypeScript contract refinement 2
